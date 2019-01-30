@@ -1,0 +1,11 @@
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\bin\Debug\netcoreapp2.1\WereWoofs.deps.json
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\bin\Debug\netcoreapp2.1\WereWoofs.runtimeconfig.json
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\bin\Debug\netcoreapp2.1\WereWoofs.runtimeconfig.dev.json
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\bin\Debug\netcoreapp2.1\WereWoofs.dll
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\bin\Debug\netcoreapp2.1\WereWoofs.pdb
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\obj\Debug\netcoreapp2.1\WereWoofs.csprojAssemblyReference.cache
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\obj\Debug\netcoreapp2.1\WereWoofs.csproj.CoreCompileInputs.cache
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\obj\Debug\netcoreapp2.1\WereWoofs.AssemblyInfoInputs.cache
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\obj\Debug\netcoreapp2.1\WereWoofs.AssemblyInfo.cs
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\obj\Debug\netcoreapp2.1\WereWoofs.dll
+C:\Users\haile\OneDrive\Documents\School\Projects\WereWoofs\obj\Debug\netcoreapp2.1\WereWoofs.pdb

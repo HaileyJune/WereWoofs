@@ -5,57 +5,103 @@ namespace WereWoofs
 {
     class PlayerManager
     {
-        public int livingPlayers;
+        public List<Player> livingPlayers;
         public List<Player> allPlayers;
         public List<Player> Q;
-        public int livingWoofs;
-        public int livingTownsfolk;
+        public List<Player> livingWoofs;
+        public List<Player> livingTownsfolk;
+
+        public Player lastDead;
 
         public PlayerManager()
         {
-            livingPlayers = 0;
-            allPlayers = new List<Player>();
-            Q = new List<Player>();
+            this.allPlayers = new List<Player>();
+            this.livingPlayers = this.allPlayers;
+            this.Q = this.allPlayers;
         }
 
-        public void AddPlayer(string newName)
+        public void AddPlayer()
+        {
+            System.Console.WriteLine("Player Name:");
+            String Boop = Console.ReadLine();
+            Player adding = new Player(Boop);
+            this.allPlayers.Add(adding);
+        }
+        public void AddPlayer(String newName)
         {
             Player adding = new Player(newName);
-            allPlayers.Add(adding);
+            this.allPlayers.Add(adding);
         }
 
         public void AssignRoles()
         {
-            if (allPlayers.Count < 12 )
+            this.livingPlayers = this.allPlayers;
+            this.Q = this.livingPlayers;
+            int Townsfolk = 0;
+            int Woofs = 0;
+            if (this.allPlayers.Count < 12 )
             {
-                livingWoofs = 2;
-                livingTownsfolk = allPlayers.Count - livingWoofs;
+                Woofs = 2;
+                Townsfolk = this.allPlayers.Count - Woofs;
             }
-            else if (allPlayers.Count < 17 )
+            else if (this.allPlayers.Count < 17 )
             {
-                livingWoofs = 3;
-                livingTownsfolk = allPlayers.Count - livingWoofs;
+                Woofs = 3;
+                Townsfolk = this.allPlayers.Count - Woofs;
             }
             else
             {
-                livingWoofs = 4;
-                livingTownsfolk = allPlayers.Count - livingWoofs;
+                Woofs = 4;
+                Townsfolk = this.allPlayers.Count - Woofs;
             }
 
             Random rand = new Random();
-            Q = allPlayers;
             //assign woofs
-            for (int i = 0; i < livingWoofs; i++){
-                int randy = rand.Next(Q.Count);
-                Player RandomPlayer = Q[randy];
+            ShuffleQ();
+            for (int i = 0; i < Woofs; i++)
+            {
+                Player RandomPlayer = this.Q[0];
                 RandomPlayer.role = "Woof";
-                Q.RemoveAt(randy);
+                RandomPlayer.team = "Woofs";
+                // this.livingWoofs.Add(RandomPlayer);
+                this.Q.RemoveAt(0);
             }
             // assign seer
-            Player Seer = Q[rand.Next(Q.Count)];
+            Player Seer = this.Q[0];
             Seer.role = "Seer";
+
+            foreach (var player in this.Q)
+            {
+                // this.livingTownsfolk.Add(player);
+            }
             // reset Q
-            Q = allPlayers;
+            this.Q = this.allPlayers;
+            ShuffleQ();
+        }
+
+        public void ShuffleQ(){
+            this.Q = this.livingPlayers;
+            Random rand = new Random();
+            for (int i = 0; i < this.Q.Count; i++)
+            {
+                int shuffle = rand.Next(this.Q.Count);
+                Player temp = this.Q[shuffle];
+                this.Q[shuffle] = this.Q[i];
+                this.Q[i] = temp;
+            }
+        }
+
+        public Player NextPlayer(){
+            Player next = this.Q[0];
+            this.Q.RemoveAt(0);
+            System.Console.Clear();
+            System.Console.WriteLine("****************************************");
+            System.Console.WriteLine("***This Screen is for {0} eyes only***", next.name);
+            System.Console.WriteLine("****************************************");
+            System.Console.WriteLine("{0}, enter your favorite number.", next.name);
+            Console.ReadLine();
+            Console.Clear();
+            return next;
         }
     }
 }

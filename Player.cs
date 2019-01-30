@@ -7,6 +7,7 @@ namespace WereWoofs
     {
         public string name;
         public string role;
+        public string team;
         public bool isAlive;
         public List<Player> voteables;
 
@@ -15,6 +16,7 @@ namespace WereWoofs
         {
             name = myName;
             role = "Townsfolk";
+            team = "Village";
             isAlive = true;
             voteables = new List<Player>();
         }
