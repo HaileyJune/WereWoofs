@@ -17,8 +17,6 @@ namespace WereWoofs
             name = myName;
             role = "Townsfolk";
             team = "Village";
-            isAlive = true;
-            voteables = new List<Player>();
         }
 
 

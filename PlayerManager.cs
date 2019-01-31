@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WereWoofs
 {
@@ -11,7 +12,7 @@ namespace WereWoofs
         public List<Player> livingWoofs;
         public List<Player> livingTownsfolk;
         public List<Player> woofVotes;
-        public List<Player> villageVotes;
+        public Dictionary<Player, Int64> VV;
 
         public Player lastDead;
 
@@ -24,6 +25,7 @@ namespace WereWoofs
             livingTownsfolk = new List<Player>();
             woofVotes = new List<Player>();
             villageVotes = new List<Player>();
+            VV = new Dictionary<Player, long>();
         }
 
         public void AddPlayer()
@@ -135,19 +137,29 @@ namespace WereWoofs
         
             Console.Clear();
                 
-            if (villageVotes.Count > 0)
-            {
-                System.Console.WriteLine("Other people have voted for:");
-                foreach (var vote in villageVotes)
-                {
-                    System.Console.WriteLine(vote.name);
-                }
-            }
-            System.Console.WriteLine();
+            // if (villageVotes.Count > 0)
+            // {
+            //     System.Console.WriteLine("Other people have voted for:");
+            //     foreach (var vote in villageVotes)
+            //     {
+            //         System.Console.WriteLine(vote.name);
+            //     }
+            // }
+            // System.Console.WriteLine();
             Player voted = Vote("Who do you vote to lynch?");
             System.Console.WriteLine();
             System.Console.WriteLine("I hope you're happy.");
-            villageVotes.Add(voted);
+            // villageVotes.Add(voted);
+
+            try
+            {
+                VV.Add(voted, 1);
+            }
+            catch
+            {
+                VV[voted] = VV[voted] + 1;
+            }
+
             Console.ReadLine();
             Console.Clear();
         }
@@ -209,11 +221,12 @@ namespace WereWoofs
         }
         public void DayEnd()
         {
-            Random rand = new Random();
-            int dead = rand.Next(villageVotes.Count);
-            lastDead = villageVotes[dead];
+            // Random rand = new Random();
+            // int dead = rand.Next(villageVotes.Count);
+            // lastDead = villageVotes[dead];
             
-            
+            //it would be better if this was real democracy rather than random
+            lastDead = VV.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
             
             livingPlayers.Remove(lastDead);
             if(lastDead.team == "Woofs")
@@ -224,7 +237,8 @@ namespace WereWoofs
             {
                 livingTownsfolk.Remove(lastDead);
             }
-            villageVotes.Clear();
+            // villageVotes.Clear();
+            VV.Clear();
         }
 
         public Player Vote(String message)
