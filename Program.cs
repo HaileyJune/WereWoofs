@@ -42,6 +42,8 @@ namespace WereWoofs
                     {
                         System.Console.WriteLine(woof.name);
                     }
+
+                    
                 }
 
                 System.Console.WriteLine("Type 'yay' or 'nay' to tell the void how you feel about that.");

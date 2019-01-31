@@ -24,7 +24,6 @@ namespace WereWoofs
             livingWoofs = new List<Player>();
             livingTownsfolk = new List<Player>();
             woofVotes = new List<Player>();
-            villageVotes = new List<Player>();
             VV = new Dictionary<Player, long>();
         }
 
@@ -99,11 +98,11 @@ namespace WereWoofs
             Player next = Q[0];
             Q.RemoveAt(0);
             System.Console.Clear();
-            System.Console.WriteLine("****************************************");
-            System.Console.WriteLine("***This Screen is for {0}'s eyes only***", next.name);
-            System.Console.WriteLine("****************************************");
-            System.Console.WriteLine("***{0}, enter your favorite number.***", next.name);
-            System.Console.WriteLine("****************************************");
+            System.Console.WriteLine("*************************************************************");
+            System.Console.WriteLine("***   This Screen is for {0}'s eyes only   ***", next.name);
+            System.Console.WriteLine("*************************************************************");
+            System.Console.WriteLine("***   {0}, enter your favorite number.   ***", next.name);
+            System.Console.WriteLine("*************************************************************");
             Console.ReadLine();
             Console.Clear();
             return next;
@@ -136,20 +135,9 @@ namespace WereWoofs
         {
         
             Console.Clear();
-                
-            // if (villageVotes.Count > 0)
-            // {
-            //     System.Console.WriteLine("Other people have voted for:");
-            //     foreach (var vote in villageVotes)
-            //     {
-            //         System.Console.WriteLine(vote.name);
-            //     }
-            // }
-            // System.Console.WriteLine();
             Player voted = Vote("Who do you vote to lynch?");
             System.Console.WriteLine();
             System.Console.WriteLine("I hope you're happy.");
-            // villageVotes.Add(voted);
 
             try
             {
@@ -167,17 +155,19 @@ namespace WereWoofs
         {
         
             Console.Clear();
-            Player voted = Vote("Who are you suspicious of?");
+            Player voted = Vote("Who would you like to know the identity of?");
             System.Console.WriteLine();
 
             if (voted.team == "Woofs")
             {
-                System.Console.WriteLine("They are team WOOF");
+                System.Console.WriteLine("{0} is team WOOF", voted.name);
             }
             else
             {
-                System.Console.WriteLine("They are a villager");
+                System.Console.WriteLine("{0} is a villager", voted.name);
             }
+            System.Console.WriteLine();
+
             Console.ReadLine();
 
         }
@@ -221,11 +211,6 @@ namespace WereWoofs
         }
         public void DayEnd()
         {
-            // Random rand = new Random();
-            // int dead = rand.Next(villageVotes.Count);
-            // lastDead = villageVotes[dead];
-            
-            //it would be better if this was real democracy rather than random
             lastDead = VV.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
             
             livingPlayers.Remove(lastDead);
@@ -237,7 +222,6 @@ namespace WereWoofs
             {
                 livingTownsfolk.Remove(lastDead);
             }
-            // villageVotes.Clear();
             VV.Clear();
         }
 

@@ -8,9 +8,6 @@ namespace WereWoofs
         public string name;
         public string role;
         public string team;
-        public bool isAlive;
-        public List<Player> voteables;
-
 
         public Player(string myName)
         {
