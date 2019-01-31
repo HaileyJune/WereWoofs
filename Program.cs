@@ -39,7 +39,60 @@ namespace WereWoofs
                 System.Console.Clear();
             }
 
-            System.Console.WriteLine("End of what I've written.");
+            System.Console.WriteLine("End of night one.");
+            System.Console.WriteLine("Read aloud:");
+            System.Console.WriteLine("Yeah, we're jumping into night one");
+            //figure out order stuff
+
+            while (Game.livingTownsfolk.Count > 0 && Game.livingWoofs.Count > 0)
+            {
+            Game.ShuffleQ();
+            //night
+            while(Game.Q.Count>0)
+            {
+                Player currentPlayer = Game.NextPlayer();
+                if (currentPlayer.role == "Woof")
+                {
+                    Game.WoofVote();
+                }
+                else if (currentPlayer.role == "Seer")
+                {
+                    Game.SeerVote();
+                }
+                else
+                {
+                    Game.VillageVote();
+                }
+            }
+            Game.NightEnd();
+            //day
+            System.Console.WriteLine("Last night we lost {0} to the woofs.", Game.lastDead.name);
+            System.Console.WriteLine("Let the lynching begin!");
+            Console.ReadLine();
+
+
+            Game.ShuffleQ();
+            while(Game.Q.Count>0)
+            {
+                Player currentPlayer = Game.NextPlayer();
+                Game.LynchVote();
+            }
+
+            Game.DayEnd();
+            System.Console.WriteLine("You killed {0}, hope that's who you meant to kill!", Game.lastDead.name);
+            if (Game.lastDead.team == "Woofs")
+            {
+                System.Console.WriteLine("They were a woof! Good job!");
+                Console.ReadLine();
+
+            }
+            else
+            {
+                System.Console.WriteLine("They were a villager! Bad job!");
+                Console.ReadLine();
+
+            }
+            }
         }
     }
 }
