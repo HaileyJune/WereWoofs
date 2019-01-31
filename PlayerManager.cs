@@ -16,8 +16,6 @@ namespace WereWoofs
         public PlayerManager()
         {
             this.allPlayers = new List<Player>();
-            this.livingPlayers = this.allPlayers;
-            this.Q = this.allPlayers;
         }
 
         public void AddPlayer()
@@ -35,27 +33,32 @@ namespace WereWoofs
 
         public void AssignRoles()
         {
-            this.livingPlayers = this.allPlayers;
-            this.Q = this.livingPlayers;
-            int Townsfolk = 0;
             int Woofs = 0;
             if (this.allPlayers.Count < 12 )
             {
                 Woofs = 2;
-                Townsfolk = this.allPlayers.Count - Woofs;
             }
             else if (this.allPlayers.Count < 17 )
             {
                 Woofs = 3;
-                Townsfolk = this.allPlayers.Count - Woofs;
             }
             else
             {
                 Woofs = 4;
-                Townsfolk = this.allPlayers.Count - Woofs;
             }
 
-            Random rand = new Random();
+            // foreach (var player in this.allPlayers)
+            // {
+            //     this.livingPlayers.Add(player);
+            //     // this.Q.Add(player);
+            // }
+
+            // for (int i = 0; i < this.allPlayers.Count; i++)
+            // {
+            //     this.livingPlayers.Add(this.allPlayers[i]);
+            // }
+
+            this.livingPlayers = new List<Player>(allPlayers);
             //assign woofs
             ShuffleQ();
             for (int i = 0; i < Woofs; i++)
@@ -75,12 +78,13 @@ namespace WereWoofs
                 // this.livingTownsfolk.Add(player);
             }
             // reset Q
-            this.Q = this.allPlayers;
+            this.Q.Clear();
             ShuffleQ();
         }
 
         public void ShuffleQ(){
-            this.Q = this.livingPlayers;
+            // this.Q.Clear();
+            this.Q = new List<Player>(this.livingPlayers);
             Random rand = new Random();
             for (int i = 0; i < this.Q.Count; i++)
             {
@@ -98,7 +102,8 @@ namespace WereWoofs
             System.Console.WriteLine("****************************************");
             System.Console.WriteLine("***This Screen is for {0} eyes only***", next.name);
             System.Console.WriteLine("****************************************");
-            System.Console.WriteLine("{0}, enter your favorite number.", next.name);
+            System.Console.WriteLine("***{0}, enter your favorite number.***", next.name);
+            System.Console.WriteLine("****************************************");
             Console.ReadLine();
             Console.Clear();
             return next;
