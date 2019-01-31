@@ -174,7 +174,16 @@ namespace WereWoofs
         
             Console.Clear();
             //randomize lines
-            Vote("Tell the void who you are worried about");
+            Random rand = new Random();
+            string[] message = 
+            {
+                "Tell the void who you are worried about",
+                "Who would look the cutest with wolf ears?",
+                "Who has the best hair?",
+                "Who will be the next to die, in your opinion?",
+            };
+            int index = rand.Next(message.Length);
+            Vote(message[index]);
             System.Console.WriteLine();
             System.Console.WriteLine("Wow, okay.");
             Console.ReadLine();

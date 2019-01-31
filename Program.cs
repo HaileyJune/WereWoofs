@@ -48,13 +48,9 @@ namespace WereWoofs
                 Console.ReadLine();
                 System.Console.Clear();
             }
-
-            System.Console.WriteLine("End of night one.");
             System.Console.WriteLine("Read aloud:");
             System.Console.WriteLine("Yeah, we're jumping into night one");
             Console.ReadLine();
-
-            //figure out order stuff
 
             while (Game.livingTownsfolk.Count > 0 && Game.livingWoofs.Count > 0)
             {
@@ -119,18 +115,17 @@ namespace WereWoofs
             }
             }
 
+            //win conditions
             if (Game.livingWoofs.Count < 1)
             {
                 System.Console.WriteLine("You killed the woofs! The village is safe!");
-                System.Console.WriteLine("Please play again!");
-                Console.ReadLine();
             }
             else
             {
                 System.Console.WriteLine("The wolves have won!");
+            }
                 System.Console.WriteLine("Please play again!");
                 Console.ReadLine();
-            }
         }
     }
 }
