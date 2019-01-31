@@ -34,6 +34,16 @@ namespace WereWoofs
             {
                 Player currentPlayer = Game.NextPlayer();
                 System.Console.WriteLine("{0}, your role is: {1}", currentPlayer.name, currentPlayer.role);
+
+                if(currentPlayer.team == "Woofs")
+                {
+                    System.Console.WriteLine("Team Woof:");
+                    foreach (var woof in Game.livingWoofs)
+                    {
+                        System.Console.WriteLine(woof.name);
+                    }
+                }
+
                 System.Console.WriteLine("Type 'yay' or 'nay' to tell the void how you feel about that.");
                 Console.ReadLine();
                 System.Console.Clear();
@@ -42,17 +52,31 @@ namespace WereWoofs
             System.Console.WriteLine("End of night one.");
             System.Console.WriteLine("Read aloud:");
             System.Console.WriteLine("Yeah, we're jumping into night one");
+            Console.ReadLine();
+
             //figure out order stuff
 
             while (Game.livingTownsfolk.Count > 0 && Game.livingWoofs.Count > 0)
             {
             Game.ShuffleQ();
             //night
+                System.Console.WriteLine("And so night falls again...");
+                Console.ReadLine();
+                Console.Clear();
             while(Game.Q.Count>0)
             {
                 Player currentPlayer = Game.NextPlayer();
-                if (currentPlayer.role == "Woof")
-                {
+                    if (currentPlayer.role == "Woof")
+                    {
+                        if (Game.woofVotes.Count > 0)
+                        {
+                            System.Console.WriteLine("Other woofs have voted for:");
+                            foreach (var vote in Game.woofVotes)
+                            {
+                                System.Console.WriteLine(vote.name);
+                                Console.ReadLine();
+                            }
+                        }
                     Game.WoofVote();
                 }
                 else if (currentPlayer.role == "Seer")
@@ -66,6 +90,7 @@ namespace WereWoofs
             }
             Game.NightEnd();
             //day
+            Console.Clear();
             System.Console.WriteLine("Last night we lost {0} to the woofs.", Game.lastDead.name);
             System.Console.WriteLine("Let the lynching begin!");
             Console.ReadLine();
@@ -92,6 +117,19 @@ namespace WereWoofs
                 Console.ReadLine();
 
             }
+            }
+
+            if (Game.livingWoofs.Count < 1)
+            {
+                System.Console.WriteLine("You killed the woofs! The village is safe!");
+                System.Console.WriteLine("Please play again!");
+                Console.ReadLine();
+            }
+            else
+            {
+                System.Console.WriteLine("The wolves have won!");
+                System.Console.WriteLine("Please play again!");
+                Console.ReadLine();
             }
         }
     }

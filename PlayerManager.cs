@@ -126,6 +126,8 @@ namespace WereWoofs
             System.Console.WriteLine("I hope you enjoy your snack.");
             woofVotes.Add(voted);
             Console.ReadLine();
+            Console.Clear();
+
 
         }
         public void LynchVote()
@@ -147,6 +149,7 @@ namespace WereWoofs
             System.Console.WriteLine("I hope you're happy.");
             villageVotes.Add(voted);
             Console.ReadLine();
+            Console.Clear();
         }
         public void SeerVote()
         {
@@ -175,6 +178,7 @@ namespace WereWoofs
             System.Console.WriteLine();
             System.Console.WriteLine("Wow, okay.");
             Console.ReadLine();
+            Console.Clear();
 
         }
 
@@ -183,6 +187,15 @@ namespace WereWoofs
             Random rand = new Random();
             int dead = rand.Next(woofVotes.Count);
             lastDead = woofVotes[dead];
+            livingPlayers.Remove(lastDead);
+            if(lastDead.team == "Woofs")
+            {
+                livingWoofs.Remove(lastDead);
+            }
+            if(lastDead.team == "Village")
+            {
+                livingTownsfolk.Remove(lastDead);
+            }
             woofVotes.Clear();
         }
         public void DayEnd()
@@ -190,6 +203,18 @@ namespace WereWoofs
             Random rand = new Random();
             int dead = rand.Next(villageVotes.Count);
             lastDead = villageVotes[dead];
+            
+            
+            
+            livingPlayers.Remove(lastDead);
+            if(lastDead.team == "Woofs")
+            {
+                livingWoofs.Remove(lastDead);
+            }
+            if(lastDead.team == "Village")
+            {
+                livingTownsfolk.Remove(lastDead);
+            }
             villageVotes.Clear();
         }
 
