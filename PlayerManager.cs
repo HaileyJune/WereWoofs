@@ -31,11 +31,21 @@ namespace WereWoofs
         {
             System.Console.WriteLine("Player Name:");
             String Boop = Console.ReadLine();
+            if (Boop.Length < 1)
+            {
+                System.Console.WriteLine("Please enter a name.");
+                return;
+            }
             Player adding = new Player(Boop);
             allPlayers.Add(adding);
         }
         public void AddPlayer(String newName)
         {
+            if (newName.Length < 1)
+            {
+                System.Console.WriteLine("Please enter a name.");
+                return;
+            }
             Player adding = new Player(newName);
             allPlayers.Add(adding);
         }
@@ -99,9 +109,13 @@ namespace WereWoofs
             Q.RemoveAt(0);
             System.Console.Clear();
             System.Console.WriteLine("*************************************************************");
-            System.Console.WriteLine("***   This Screen is for {0}'s eyes only   ***", next.name);
             System.Console.WriteLine("*************************************************************");
-            System.Console.WriteLine("***   {0}, enter your favorite number.   ***", next.name);
+            System.Console.WriteLine("*************************************************************");
+            System.Console.WriteLine("********   This Screen is for {0}'s eyes only   ********", next.name);
+            System.Console.WriteLine("*************************************************************");
+            System.Console.WriteLine("*************************************************************");
+            System.Console.WriteLine("*************************************************************");
+            System.Console.WriteLine("**********   {0}, enter your favorite number.   **********", next.name);
             System.Console.WriteLine("*************************************************************");
             Console.ReadLine();
             Console.Clear();
@@ -110,7 +124,6 @@ namespace WereWoofs
 
         public void WoofVote()
         {
-        
             Console.Clear();
                 
             if (woofVotes.Count > 0)
@@ -128,8 +141,6 @@ namespace WereWoofs
             woofVotes.Add(voted);
             Console.ReadLine();
             Console.Clear();
-
-
         }
         public void LynchVote()
         {
@@ -169,6 +180,8 @@ namespace WereWoofs
             System.Console.WriteLine();
 
             Console.ReadLine();
+            Console.Clear();
+
 
         }
         public void VillageVote()

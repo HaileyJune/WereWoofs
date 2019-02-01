@@ -8,11 +8,14 @@ namespace WereWoofs
         {
             PlayerManager Game = new PlayerManager();
 
+            Console.Clear();
+
             System.Console.WriteLine("Add Players");
 
 
             while (Game.allPlayers.Count < 8)
             {
+
                 Game.AddPlayer();
             }
             string Boop = null;
@@ -45,8 +48,16 @@ namespace WereWoofs
 
                     
                 }
-
-                System.Console.WriteLine("Type 'yay' or 'nay' to tell the void how you feel about that.");
+                string[] sassyMessages = 
+                {
+                    "Type 'yay' or 'nay' to tell the void how you feel about that.",
+                    "Now, enter your favorite color.",
+                    "Tell the void: Do you like cats or dogs?",
+                    "Tell the void: Sweet or savory?"
+                };
+                Random rand = new Random();
+                int ind = rand.Next(sassyMessages.Length);
+                System.Console.WriteLine(sassyMessages[ind]);
                 Console.ReadLine();
                 System.Console.Clear();
             }
@@ -68,7 +79,7 @@ namespace WereWoofs
                     {
                         if (Game.woofVotes.Count > 0)
                         {
-                            System.Console.WriteLine("Other woofs have voted for:");
+                            System.Console.WriteLine("Other woofs have voted to eat:");
                             foreach (var vote in Game.woofVotes)
                             {
                                 System.Console.WriteLine(vote.name);
@@ -90,18 +101,30 @@ namespace WereWoofs
             //day
             Console.Clear();
             System.Console.WriteLine("Last night we lost {0} to the woofs.", Game.lastDead.name);
+            System.Console.WriteLine("The void recommends nominating a few suspicious villagers before heading to the voting phase.");
             System.Console.WriteLine("Let the lynching begin!");
             Console.ReadLine();
 
 
             Game.ShuffleQ();
+            //lynching
             while(Game.Q.Count>0)
             {
                 Player currentPlayer = Game.NextPlayer();
+                if (Game.VV.Count > 0)
+                    {
+                        System.Console.WriteLine("Other villagers have voted for:");
+                        foreach (var vote in Game.VV)
+                        {
+                            System.Console.WriteLine(vote.Key.name);
+                            Console.ReadLine();
+                        }
+                    }
                 Game.LynchVote();
             }
 
             Game.DayEnd();
+            System.Console.WriteLine("Read aloud:");
             System.Console.WriteLine("You killed {0}, hope that's who you meant to kill!", Game.lastDead.name);
             if (Game.lastDead.team == "Woofs")
             {
