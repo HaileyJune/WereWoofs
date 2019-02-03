@@ -147,7 +147,7 @@ namespace WereWoofs
             }
             else
             {
-                System.Console.WriteLine("The wolves have won!");
+                System.Console.WriteLine("The woofs have won!");
             }
                 System.Console.WriteLine("Please play again!");
                 Console.ReadLine();
