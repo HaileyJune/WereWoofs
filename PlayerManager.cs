@@ -115,8 +115,8 @@ namespace WereWoofs
             System.Console.WriteLine("*************************************************************");
             System.Console.WriteLine("*************************************************************");
             System.Console.WriteLine("*************************************************************");
-            System.Console.WriteLine("**********   {0}, enter your favorite number.   **********", next.name);
-            System.Console.WriteLine("*************************************************************");
+            // System.Console.WriteLine("**********   {0}, enter your favorite number.   **********", next.name);
+            // System.Console.WriteLine("*************************************************************");
             Console.ReadLine();
             Console.Clear();
             return next;

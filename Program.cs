@@ -7,7 +7,25 @@ namespace WereWoofs
         static void Main(string[] args)
         {
             PlayerManager Game = new PlayerManager();
+            Console.Clear();
 
+
+            System.Console.WriteLine(@"                     .");
+            System.Console.WriteLine(@"                    / V\");
+            System.Console.WriteLine(@"                  / `  /");
+            System.Console.WriteLine(@"                 <<   |");
+            System.Console.WriteLine(@"                 /    |");
+            System.Console.WriteLine(@"               /      |");
+            System.Console.WriteLine(@"             /        |");
+            System.Console.WriteLine(@"           /    \  \ /");
+            System.Console.WriteLine(@"          (      ) | |");
+            System.Console.WriteLine(@"  ________|   _/_  | |");
+            System.Console.WriteLine(@"<__________\______)\__)");
+            System.Console.WriteLine("*************************");
+            System.Console.WriteLine(" * Welcome to WereWoof *");
+            System.Console.WriteLine("*************************");
+            
+            Console.ReadLine();
             Console.Clear();
 
             System.Console.WriteLine("Add Players");
@@ -117,8 +135,8 @@ namespace WereWoofs
                         foreach (var vote in Game.VV)
                         {
                             System.Console.WriteLine(vote.Key.name);
-                            Console.ReadLine();
                         }
+                            Console.ReadLine();
                     }
                 Game.LynchVote();
             }
