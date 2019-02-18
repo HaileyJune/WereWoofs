@@ -9,6 +9,7 @@ namespace WereWoofs
             PlayerManager Game = new PlayerManager();
             Console.Clear();
 
+            //Game Setup
 
             System.Console.WriteLine(@"                     .");
             System.Console.WriteLine(@"                    / V\");
@@ -30,13 +31,15 @@ namespace WereWoofs
 
             System.Console.WriteLine("Add Players");
 
+            //loop to add players
 
             while (Game.allPlayers.Count < 8)
             {
 
                 Game.AddPlayer();
             }
-            string Boop = null;
+            string Boop = null; //user imput
+            //loop to add players past 8
             while (Boop != "start")
             {
                 System.Console.WriteLine("Enter 'start' to play or add another player:");
@@ -48,14 +51,16 @@ namespace WereWoofs
 
             System.Console.Clear();
             System.Console.WriteLine("Game Starting");
+            //backend role assignment
             Game.AssignRoles();
 
             //first night
             while(Game.Q.Count>0)
             {
                 Player currentPlayer = Game.NextPlayer();
+                //tell player their role
                 System.Console.WriteLine("{0}, your role is: {1}", currentPlayer.name, currentPlayer.role);
-
+                //tell woofs who the other woofs are
                 if(currentPlayer.team == "Woofs")
                 {
                     System.Console.WriteLine("Team Woof:");
@@ -66,6 +71,7 @@ namespace WereWoofs
 
                     
                 }
+                //pick odd message to display
                 string[] sassyMessages = 
                 {
                     "Type 'yay' or 'nay' to tell the void how you feel about that.",
@@ -90,9 +96,11 @@ namespace WereWoofs
                 System.Console.WriteLine("And so night falls again...");
                 Console.ReadLine();
                 Console.Clear();
+            //for each player alive
             while(Game.Q.Count>0)
             {
                 Player currentPlayer = Game.NextPlayer();
+                    //Woof turn
                     if (currentPlayer.role == "Woof")
                     {
                         if (Game.woofVotes.Count > 0)
@@ -106,10 +114,12 @@ namespace WereWoofs
                         }
                     Game.WoofVote();
                 }
+                //seer turn
                 else if (currentPlayer.role == "Seer")
                 {
                     Game.SeerVote();
                 }
+                //villager turn
                 else
                 {
                     Game.VillageVote();

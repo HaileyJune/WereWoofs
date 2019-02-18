@@ -12,6 +12,7 @@ namespace WereWoofs
         public List<Player> livingWoofs;
         public List<Player> livingTownsfolk;
         public List<Player> woofVotes;
+        //list counting number of votes for a particular player
         public Dictionary<Player, Int64> VV;
 
         public Player lastDead;
@@ -31,6 +32,7 @@ namespace WereWoofs
         {
             System.Console.WriteLine("Player Name:");
             String Boop = Console.ReadLine();
+            //require valid name
             if (Boop.Length < 1)
             {
                 System.Console.WriteLine("Please enter a name.");
